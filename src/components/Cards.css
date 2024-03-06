@@ -1,10 +1,14 @@
 .cards {
-    padding: 4rem;
-    background: #fff;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    background: #F8FAFF;;
   }
 
+
   .card_btn {
-    background-color: white;
+    background-color: #F8FAFF;
     text-align: center;
     padding: 20px;
     position: relative; /* Needed for pseudo-elements to work within the banner */
@@ -114,7 +118,7 @@
     font-size: 12px;
     font-weight: 700;
     color: #fff;
-    background-color: #1f98f4;
+    background-color: #4855E5;
     box-sizing: border-box;
   }
   

@@ -9,7 +9,7 @@ function HeroSection() {
       <video src='../images/home-bg.mp4' autoPlay loop muted />
       
       
-      <h1>Book your Lab  Appointment <br/> Today, Through Online</h1>
+      <h1>Secure Your Lab Appointment <br/> Through Online Today!</h1>
       <br/>
       <p>
         Embrace a life of vitality and optimal health. At ABC Laboratories, we are dedicated to 
