@@ -11,7 +11,7 @@ function Footer() {
           Register and Start your Healing with us Today!
         </p>
         <p className='footer-subscription-text'>
-          You can sign up at any time.
+          Signup to Book your test
         </p>
         <div className='input-areas'>
           <form>
