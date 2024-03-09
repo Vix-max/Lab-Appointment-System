@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import './Login.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin({ userType }) {
@@ -74,13 +74,59 @@ function AdminLogin({ userType }) {
           </form>
         )}
         {userType === 'doctor' && (
+          <form className='adminLogForm' onSubmit={handleSubmit}>
           <h2>Doctor Login</h2>
+          <div className='line'></div>
+          <label>
+            Username:
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            Password:
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </label>
+          <br></br>
+          <button className='adminSubmit' type="submit">Login</button>
+          <button className='backButton' onClick={() => window.location.reload()} type="button">Back</button>
+        </form>
         )}
         {userType === 'patient' && (
+          <form className='adminLogForm' onSubmit={handleSubmit}>
           <h2>Patient Login</h2>
+          <div className='line'></div>
+          <label>
+            Username:
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            Password:
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </label>
+          <br></br>
+          <button className='adminSubmit' type="submit">Login</button>
+          <Link to="/patientregister" className='userRegister'>Register</Link>
+          <button className='backButton' onClick={() => window.location.reload()} type="button">Back</button>
+        </form>
         )}
         {userType === 'tech' && (
+          <form className='adminLogForm' onSubmit={handleSubmit}>
           <h2>Technician Login</h2>
+          <div className='line'></div>
+          <label>
+            Username:
+            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+          </label>
+          <br />
+          <label>
+            Password:
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          </label>
+          <br></br>
+          <button className='adminSubmit' type="submit">Login</button>
+          <button className='backButton' onClick={() => window.location.reload()} type="button">Back</button>
+        </form>
         )}
       </div>
     </div>
