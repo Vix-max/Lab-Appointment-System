@@ -7,7 +7,7 @@
   flex-direction: column; /* Arrange children vertically */
   align-items: flex-start; /* Align items to the left */
   justify-content: center; /* Center vertically */
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 

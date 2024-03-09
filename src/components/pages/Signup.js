@@ -4,17 +4,26 @@ import AdminLogin from '../AdminLogin';
 import Footer from '../Footer';
 import {Link} from 'react-router-dom'
 import { Button } from '../Button';
+import { useNavigate } from 'react-router-dom';
 
 function Signup(){
 
-  const [selectedUserType, setSelectedUserType] = useState(null);
+  useEffect(() => {
+    window.scrollTo(0, 300); 
+  }, []); 
 
+  const [selectedUserType, setSelectedUserType] = useState(null);
+  const navigate = useNavigate();
 
   const handleUserTypeSelect = (userType, event) => {
-    event.preventDefault(); // Prevent default navigation behavior
+    event.preventDefault();
     setSelectedUserType(userType);
   };
 
+  const handleLogout = () => {
+    setSelectedUserType(null);
+  };
+ 
     return(
         <>
 
@@ -31,6 +40,7 @@ function Signup(){
       <br/>
       {!selectedUserType && (
       <div>
+      
         <div className='card_btn2'>
       <Button className='btns' buttonStyle='btn-outline-drblue' buttonSize='btn--small'>
             USER TYPES
@@ -71,7 +81,7 @@ function Signup(){
       
 
       <li className='cards__item2'>
-        <Link className='cards__item__link2' to="/">
+        <Link className='cards__item__link2' to="/" onClick={(event) => handleUserTypeSelect('doctor', event)}>
         <figure className='cards__item__pic-wrap2' >
             <img
               className='cards__item__img2'
@@ -89,7 +99,7 @@ function Signup(){
 
 
       <li className='cards__item2'>
-        <Link className='cards__item__link2' to="/">
+        <Link className='cards__item__link2' to="/" onClick={(event) => handleUserTypeSelect('tech', event)}>
         <figure className='cards__item__pic-wrap2' >
             <img
               className='cards__item__img2'
@@ -105,7 +115,7 @@ function Signup(){
       </li>
 
       <li className='cards__item2'>
-        <Link className='cards__item__link2' to="/">
+        <Link className='cards__item__link2' to="/" onClick={(event) => handleUserTypeSelect('patient', event)}>
         <figure className='cards__item__pic-wrap2' >
             <img
               className='cards__item__img2'
@@ -133,16 +143,23 @@ function Signup(){
   
   </div>
   )}
-
-  <div>
-
   {selectedUserType && (
         <>
-          {selectedUserType === 'admin' && <AdminLogin />}
+          {selectedUserType === 'admin' && <AdminLogin userType={selectedUserType} />}
+          {selectedUserType === 'doctor' && <AdminLogin userType={selectedUserType} />}
+          {selectedUserType === 'patient' && <AdminLogin userType={selectedUserType} />}
+          {selectedUserType === 'tech' && <AdminLogin userType={selectedUserType} />}
         </>
       )}
 
+
+  <div>
+
+
+
   </div>
+
+
         <Footer />
 
         </>

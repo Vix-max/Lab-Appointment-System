@@ -8,6 +8,8 @@ import Tests from './components/pages/Tests';
 import About from './components/pages/About';
 import Contact from './components/pages/Contact';
 import Signup from './components/pages/Signup';
+import AdminProfile from './components/pages/AdminProfile';
+import AdminLogin from './components/AdminLogin';
 
 function App() {
   return (
@@ -20,6 +22,7 @@ function App() {
           <Route path='/about' exact element={<About/>} />
           <Route path='/contact' exact element={<Contact/>} />
           <Route path='/signup' exact element={<Signup/>} />
+          <Route path='/adminprofile' exact element={<AdminProfile/>} />
         </Routes>
       </Router>
     </>
