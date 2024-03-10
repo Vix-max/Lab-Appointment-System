@@ -36,23 +36,7 @@ function AdminLogin({ userType }) {
         toast.dismiss();
         toast.success("Login Success", { hideProgressBar: true });
         setTimeout(() => {
-          switch (userType) {
-            case 'admin':
-              navigate('/adminprofile', { state: { userDetails: username } });
-              break;
-            case 'doctor':
-              navigate('/doctorprofile', { state: { userDetails: username } });
-              break;
-            case 'patient':
-              navigate('/patientprofile', { state: { userDetails: username } });
-              break;
-            case 'tech':
-              navigate('/techprofile', { state: { userDetails: username } });
-              break;
-            default:
-              navigate('/');
-              break;
-          }
+          navigate(`/${userType}profile?username=${username}`);
         }, 2000);
       } else {
         console.error('Login failed:', response.data);

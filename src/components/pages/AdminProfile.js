@@ -1,7 +1,8 @@
-import React, {  useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, {  useEffect, useState } from 'react';
+import { useLocation, useNavigate,useParams } from 'react-router-dom';
 import './AdminProfile.css';
 import Footer from '../Footer';
+import EditAccount from '../EditAccount';
 import {Link} from 'react-router-dom'
 import { Button } from '../Button';
 
@@ -12,17 +13,30 @@ import { Button } from '../Button';
       }, []); 
 
       //Accessing the username from the login page
-      const location = useLocation();
-     const userDetails = location.state.userDetails;
+      const queryParams = new URLSearchParams(window.location.search);
+        const username = queryParams.get('username');
+      console.log('Username:', username); // Check if username is logged correctly
+
+     const [selectedUserType, setSelectedUserType] = useState(null);
+     
+   
+     const handleUserTypeSelect = (userType, event) => {
+       event.preventDefault();
+       setSelectedUserType(userType);
+     };
+   
+     const handleLogout = () => {
+       setSelectedUserType(null);
+     };
     return (
         <div>
             <div className='hero'>
 
             <h1 className='hero_h1'> Admin Profile</h1>
-            <p className='hero_p'>User : {userDetails}</p>
+            <p className='hero_p'>User: {username}</p> {/* Display username here */}
 
             </div>
-            
+            {!selectedUserType && (    
   <div>
       
       <div className='card_btn3'>
@@ -39,7 +53,7 @@ import { Button } from '../Button';
 
 
 <li className='cards__item3'>
-  <Link className='cards__item__link3' to="/" >
+  <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('admin', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -185,6 +199,12 @@ import { Button } from '../Button';
     
 
 </div>
+)}
+{selectedUserType && (
+      <>
+        {selectedUserType === 'admin' && <EditAccount userType={selectedUserType}/>}
+      </>
+    )}
 
 
 

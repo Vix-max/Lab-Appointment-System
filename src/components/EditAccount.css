@@ -1,0 +1,177 @@
+@font-face {
+    font-family: 'gwyner'; /* Choose any name for your font */
+    src: url('../fonts/gwyner-condensed-light.ttf') format('truetype'); /* Update the path and format as needed */
+  }
+  
+  
+  .formContainer{
+      display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+  }
+  
+  .patientUsernameEdit{
+      border-radius: 30px;
+      box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
+      text-align: center;
+      padding: 20px;
+      margin: 50px;
+      font-family: "Montserrat", sans-serif;
+      width: 50%;
+      
+  }
+  
+  .patientUsernameEdit h2{
+    font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
+      margin-bottom: 15px;
+      margin-top: 12px;
+      
+  }
+
+  .patientPasswordEdit{
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
+    text-align: center;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    margin-left: 50px;
+    font-family: "Montserrat", sans-serif;
+    width: 50%;
+    
+}
+
+.patientPasswordEdit h2{
+  font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
+    margin-bottom: 15px;
+    margin-top: 12px;
+    
+}
+  
+  .line {
+      height: 3px; /* Adjust line thickness as needed */
+      margin-bottom: 20px;
+      background-color: white;
+      text-align: center;
+      padding-bottom: 15px;
+      position: relative; /* Needed for pseudo-elements to work within the banner */
+  }
+  
+  
+  
+  .line::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.8) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  .line::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.3) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+   .patientUsernameEdit input{
+      font-family: "Montserrat", sans-serif;
+      margin: 10px;
+      border-radius: 15px;
+      border: 1px solid #cbcbcb;
+      padding: 8px 20px;
+      width: 50%;
+   }
+  
+   .patientUsernameEdit label{
+      font-family: "Montserrat", sans-serif;
+     
+   }
+
+   .patientPasswordEdit input{
+    font-family: "Montserrat", sans-serif;
+    margin: 10px;
+    border-radius: 15px;
+    border: 1px solid #cbcbcb;
+    padding: 8px 20px;
+    width: 50%;
+ }
+
+ .patientPasswordEdit label{
+    font-family: "Montserrat", sans-serif;
+   
+ }
+  
+   .adminSubmit {
+    float: right;
+    margin-right: 40px;
+    margin-top: 20px;
+      background-color: #4855E5;
+      color: white;
+      border: 1px solid #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .adminSubmit:hover {
+    margin-top: 20px;
+      background-color: #343d9f;
+      border: 1px solid #343d9f;
+   }
+  
+   .backButton {
+      float: left;
+      margin-left: 40px;
+      margin-top: 20px;
+      background-color: white;
+      color: #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border: 1px solid #4855E5;
+        border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .backButton:hover {
+    margin-top: 20px;
+      background-color: #4855E5;
+      border: 1px solid #4855E5;
+      color: white;
+   }
+   
+  
+  .userRegister {
+    text-decoration: none;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+      background-color: #4855E5;
+      color: white;
+      border: 1px solid #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .userRegister:hover {
+    margin-top: 20px;
+      background-color: #343d9f;
+      border: 1px solid #343d9f;
+   }
+      
