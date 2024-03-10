@@ -19,35 +19,50 @@ function AdminLogin({ userType }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
+    // Define backend API endpoints for each user type
+    const backendEndpoints = {
+      admin: 'http://localhost:8080/admin/login',
+      doctor: 'http://localhost:8080/doctor/login',
+      patient: 'http://localhost:8080/patient/login',
+      tech: 'http://localhost:8080/tech/login'
+    };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/admin/login', { password, username });
+      const response = await axios.post(backendEndpoints[userType], { password, username });
       if (response.status === 200) {
         console.log(response.data);
-        setUserDetails(userDetails);
         toast.dismiss();
-        toast.success("Login Success", {
-          hideProgressBar: true, // Hide the loading bar
-        });
-        setIsLoggedIn(true);
+        toast.success("Login Success", { hideProgressBar: true });
         setTimeout(() => {
-          navigate('/adminprofile', { state: { userDetails: username } }); // Pass userDetails as state
+          switch (userType) {
+            case 'admin':
+              navigate('/adminprofile', { state: { userDetails: username } });
+              break;
+            case 'doctor':
+              navigate('/doctorprofile', { state: { userDetails: username } });
+              break;
+            case 'patient':
+              navigate('/patientprofile', { state: { userDetails: username } });
+              break;
+            case 'tech':
+              navigate('/techprofile', { state: { userDetails: username } });
+              break;
+            default:
+              navigate('/');
+              break;
+          }
         }, 2000);
       } else {
         console.error('Login failed:', response.data);
         toast.dismiss();
-        toast.error("Login failed. Please try again.", {
-          hideProgressBar: true, // Hide the loading bar
-        });
-        
+        toast.error("Login failed. Please try again.", { hideProgressBar: true });
       }
     } catch (error) {
       console.error('Login failed:', error);
       toast.dismiss();
-      toast.error("Login failed. Please try again.", {
-        hideProgressBar: true, // Hide the loading bar
-      });
+      toast.error("Login failed. Please try again.", { hideProgressBar: true });
     }
   };
 

@@ -10,6 +10,7 @@ import Contact from './components/pages/Contact';
 import Signup from './components/pages/Signup';
 import AdminProfile from './components/pages/AdminProfile';
 import PatientRegister from './components/PatientRegister';
+import PatientProfile from './components/pages/PatientProfile';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path='/signup' exact element={<Signup/>} />
           <Route path='/adminprofile' exact element={<AdminProfile/>} />
           <Route path='/patientregister' exact element={<PatientRegister/>} />
+          <Route path='/patientProfile' exact element={<PatientProfile/>} />
         </Routes>
       </Router>
     </>
