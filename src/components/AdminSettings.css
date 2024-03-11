@@ -2,7 +2,6 @@
     font-family: 'gwyner'; /* Choose any name for your font */
     src: url('../fonts/gwyner-condensed-light.ttf') format('truetype'); /* Update the path and format as needed */
   }
-  
   .backBtn{
     margin-top: 20px;
     margin-left: 50px;
@@ -16,14 +15,15 @@
     justify-content: flex-start; /* Align items to the left */
     align-items: center; /* Center items vertically */
   }
-
+  
   .formContainer{
       display: flex;
     justify-content: center; /* Horizontally center the content */
     align-items: center; /* Vertically center the content */
   }
   
-  .patientUsernameEdit{
+  .registerForm{
+    
       border-radius: 30px;
       box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
       text-align: center;
@@ -34,33 +34,12 @@
       
   }
   
-  .patientUsernameEdit h2{
+  .registerForm h2{
     font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
       margin-bottom: 15px;
       margin-top: 12px;
       
   }
-
-  .patientPasswordEdit{
-    border-radius: 30px;
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
-    text-align: center;
-    padding: 20px;
-    margin-top: 10px;
-    margin-bottom: 50px;
-    margin-right: 50px;
-    margin-left: 50px;
-    font-family: "Montserrat", sans-serif;
-    width: 50%;
-    
-}
-
-.patientPasswordEdit h2{
-  font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
-    margin-bottom: 15px;
-    margin-top: 12px;
-    
-}
   
   .line {
       height: 3px; /* Adjust line thickness as needed */
@@ -97,60 +76,42 @@
     z-index: 0;
   }
   
-   .patientUsernameEdit input{
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+
+   .registerForm input{
       font-family: "Montserrat", sans-serif;
       margin: 10px;
-      border-radius: 15px;
+      border-radius: 30px;
       border: 1px solid #cbcbcb;
-      padding: 8px 20px;
-      width: 50%;
+      padding: 10px 23px;
+      width: 70%;    
    }
+
+   .registerForm select{
+    font-family: "Montserrat", sans-serif;
+    margin: 10px;
+    border-radius: 30px;
+    border: 1px solid #cbcbcb;
+    padding: 10px 23px;
+    width: 70%;   
+    padding-right: 20px; 
+ }
   
-   .patientUsernameEdit label{
+   .registerForm label{
       font-family: "Montserrat", sans-serif;
      
    }
-
-   .patientPasswordEdit input{
-    font-family: "Montserrat", sans-serif;
-    margin: 10px;
-    border-radius: 15px;
-    border: 1px solid #cbcbcb;
-    padding: 8px 20px;
-    width: 50%;
- }
-
- .patientPasswordEdit label{
-    font-family: "Montserrat", sans-serif;
-   
- }
   
-   .adminNameSubmit {
+   .adminAddSubmit {
     text-align: center;
     margin-right: 40px;
     margin-top: 20px;
-      background-color: #4855E5;
-      color: white;
-      margin-bottom: 20px;
-      border: 1px solid #4855E5;
-      padding: 12px 26px;
-      font-size: 15px;
-      border-radius: 25px;
-      font-family: "Montserrat", sans-serif;
-      transition: all 0.2s ease-out;
-   }
-  
-   .adminNameSubmit:hover {
-    margin-top: 20px;
-      background-color: #343d9f;
-      border: 1px solid #343d9f;
-   }
-
-   .adminPassSubmit {
-    text-align: center;
-    margin-right: 40px;
     margin-bottom: 20px;
-    margin-top: 20px;
       background-color: #4855E5;
       color: white;
       border: 1px solid #4855E5;
@@ -161,12 +122,11 @@
       transition: all 0.2s ease-out;
    }
   
-   .adminPassSubmit:hover {
+   .adminAddSubmit:hover {
     margin-top: 20px;
       background-color: #343d9f;
       border: 1px solid #343d9f;
    }
-  
   
    .backButton {
       float: left;
@@ -189,25 +149,4 @@
       color: white;
    }
    
-  
-  .userRegister {
-    text-decoration: none;
-    float: right;
-    margin-right: 20px;
-    margin-top: 20px;
-      background-color: #4855E5;
-      color: white;
-      border: 1px solid #4855E5;
-      padding: 12px 26px;
-      font-size: 15px;
-      border-radius: 25px;
-      font-family: "Montserrat", sans-serif;
-      transition: all 0.2s ease-out;
-   }
-  
-   .userRegister:hover {
-    margin-top: 20px;
-      background-color: #343d9f;
-      border: 1px solid #343d9f;
-   }
-      
+    

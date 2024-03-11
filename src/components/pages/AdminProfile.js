@@ -3,19 +3,32 @@ import { useLocation, useNavigate,useParams } from 'react-router-dom';
 import './AdminProfile.css';
 import Footer from '../Footer';
 import EditAccount from '../EditAccount';
+import AdminSettings from '../AdminSettings';
 import {Link} from 'react-router-dom'
 import { Button } from '../Button';
+import { useAuth } from '../../AuthContext'; // Import useAuth hook
+import 'react-toastify/dist/ReactToastify.css';
 
 
  function AdminProfile(){
     useEffect(() => {
-        window.scrollTo(0, 0); 
+        window.scrollTo(0, 400); 
       }, []); 
 
-      //Accessing the username from the login page
-      const queryParams = new URLSearchParams(window.location.search);
-        const username = queryParams.get('username');
-      console.log('Username:', username); // Check if username is logged correctly
+
+      const { username: username, userType: isLoggedUserType, isLoggedIn, logout } = useAuth(); // Get the username and userType from AuthContext
+      console.log('Logged In Username:', username); // Check if logged in username is retrieved
+      console.log('User Type:', isLoggedUserType); // Check if user type is retrieved
+      console.log('Is Logged:', isLoggedIn); // Check if user type is retrieved
+
+      const navigate = useNavigate();
+
+      const handleLogout = () => {
+        logout();
+        navigate('/'); // Navigate to home page
+        window.location.reload(); // Refresh the page
+    };
+
 
      const [selectedUserType, setSelectedUserType] = useState(null);
      
@@ -24,16 +37,16 @@ import { Button } from '../Button';
        event.preventDefault();
        setSelectedUserType(userType);
      };
-   
-     const handleLogout = () => {
-       setSelectedUserType(null);
-     };
+
+
+
     return (
         <div>
             <div className='hero'>
 
             <h1 className='hero_h1'> Admin Profile</h1>
-            <p className='hero_p'>User: {username}</p> {/* Display username here */}
+            <p className='hero_p'>User : {username}</p>
+            
 
             </div>
             {!selectedUserType && (    
@@ -53,7 +66,7 @@ import { Button } from '../Button';
 
 
 <li className='cards__item3'>
-  <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('admin', event)}>
+  <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('editaccount', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -123,7 +136,7 @@ import { Button } from '../Button';
       <ul className='cards__items3'>  
 
       <li className='cards__item3'>
-      <Link className='cards__item__link' to="/" >
+      <Link className='cards__item__link' to="/" onClick={(event) => handleUserTypeSelect('adminsettings', event)}>
       <figure className='cards__item__pic-wrap3' >
 
           <img
@@ -195,6 +208,9 @@ import { Button } from '../Button';
 
 
     </div>
+    <Button buttonStyle='logoutBtn' onClick={handleLogout}>
+          Logout
+      </Button>
     </div>
     
 
@@ -202,7 +218,8 @@ import { Button } from '../Button';
 )}
 {selectedUserType && (
       <>
-        {selectedUserType === 'admin' && <EditAccount userType={selectedUserType}/>}
+        {selectedUserType === 'editaccount' && <EditAccount userType={selectedUserType}/>}
+        {selectedUserType === 'adminsettings' && <AdminSettings userType={selectedUserType}/>}
       </>
     )}
 

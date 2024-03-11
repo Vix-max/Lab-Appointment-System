@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 import './Navbar.css'; 
 import {Button} from './Button';
-import Home from './pages/Home';
-import homeBg from '../images/logo-1.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAuth } from '../AuthContext';
+
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const { isLoggedIn, userType: isLoggedUserType } = useAuth(); // Get isLoggedIn from the AuthContext
+    const navigate = useNavigate(); // Get navigate function
+
+    const handleProfileClick = () => {
+        if (!isLoggedIn) {
+            // If not logged in, navigate to signup
+            navigate('/signup');
+        } else {
+            // If logged in, navigate to profile
+            navigate(`/${isLoggedUserType}profile`);
+        }
+    };
+
+    
 
     const handleClick = () => setClick(!click);
     const closeMobileMenu = () => setClick(false);
@@ -62,12 +75,15 @@ function Navbar() {
                         </Link>
                     </li>
                     <li className='nav-item'>
-                        <Link to='/signup' className='nav-links-mobile' onClick={closeMobileMenu}>
-                            Sign up
-                        </Link>
+                        
                     </li>
                 </ul> 
-                {button && <Button buttonStyle='btn--primary'>Sign Up</Button>}
+                 {/* Conditionally render Sign Up or Profile button based on isLoggedIn */}
+                 {button && (
+                    <Button buttonStyle='btn--primary' onClick={handleProfileClick}>
+                        {isLoggedIn ? 'Profile' : 'Sign Up'}
+                    </Button>
+                )}
             </div>
         </nav>
     </>

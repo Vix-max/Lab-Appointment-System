@@ -5,6 +5,7 @@ import './Login.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 function AdminLogin({ userType }) {
@@ -15,8 +16,8 @@ function AdminLogin({ userType }) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const { isLoggedIn, login } = useAuth();
   const [userDetails, setUserDetails] = useState(null); // State to store user details
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
     // Define backend API endpoints for each user type
@@ -35,6 +36,7 @@ function AdminLogin({ userType }) {
         console.log(response.data);
         toast.dismiss();
         toast.success("Login Success", { hideProgressBar: true });
+        login(username,userType); // Call the login function with the username
         setTimeout(() => {
           navigate(`/${userType}profile?username=${username}`);
         }, 2000);

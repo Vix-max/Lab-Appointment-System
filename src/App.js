@@ -11,6 +11,7 @@ import Signup from './components/pages/Signup';
 import AdminProfile from './components/pages/AdminProfile';
 import PatientRegister from './components/PatientRegister';
 import PatientProfile from './components/pages/PatientProfile';
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
 
 function App() {
   return (

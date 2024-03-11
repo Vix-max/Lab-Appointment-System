@@ -60,6 +60,22 @@
     border-radius: 25px;
   }
 
+  .logoutBtn{
+    background-color: var(--primary);
+    color: white;
+    border: 1px solid var(--primary);
+    margin-bottom: 30px;
+    padding: 12px 26px;
+    font-size: 15px;
+    border-radius: 25px;
+  }
+  .logoutBtn:hover{
+  transition: all 0.3s ease-out;
+    background: #fff;
+    color: #3644E5;
+    transition: 250ms;
+  }
+
   .btn--small {
     padding: 7px 15px;
     font-size: 14px;
