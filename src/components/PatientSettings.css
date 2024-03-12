@@ -16,11 +16,6 @@
     align-items: center; /* Center items vertically */
   }
   
-  .formContainer{
-      display: flex;
-    justify-content: center; /* Horizontally center the content */
-    align-items: center; /* Vertically center the content */
-  }
 
   
   .tableContainer{
@@ -30,35 +25,41 @@
   padding: 50px;
 }
 
-.adminTable {
+.patienttable {
   border-radius: 30px;
   box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
   text-align: center;
   margin: 50px;
   font-family: "Montserrat", sans-serif;
-  width: 50%;
   margin: 0 auto; /* Center the table horizontally */
   padding: 20px;
-  width: 60%; /* Set the table width to 100% */
+  width: 90%; /* Set the table width to 100% */
   margin: 0 auto; /* Center the table horizontally */
   text-align: center; /* Center the table content */
   border-spacing: 0;
 }
 
-.adminTable th,
-.adminTable td,
-.adminTable tr {
+.patienttable th,
+.patienttable td,
+.patienttable tr {
   
   border-spacing: 0; /* Remove any spacing between adjacent cells */
   text-align: center; /* Center the content of th, td, and tr */
 }
 
-.adminTable th {
-  width: 100%; /* Set th width to 100% */
+.patienttable th {
   text-align: center; /* Center the content of th */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  padding-bottom: 30px;
+  color: #4f5051;
 }
 
-.adminTable td {
+tr.margin-bottom {
+    margin-bottom: 40px; /* Adjust the margin value as needed */
+  }
+
+.patienttable td {
   
   padding: 15px;
   border-spacing: 0; /* Remove any spacing between adjacent cells */
@@ -67,18 +68,18 @@
 }
 
 
-.adminTable h2{
+.patienttable h2{
   font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
     margin-bottom: 15px;
     margin-top: 12px;
     
 }
 
-.adminTable td {
+.patienttable td {
   font-family: "Montserrat", sans-serif;
 }
 
-.adminDeleteSubmit{
+.patientDeleteSubmit{
   background-color: transparent;
   color: #4855E5;
   font-family: "Montserrat", sans-serif;
@@ -90,7 +91,7 @@
   border-radius: 25px;
 }
 
-.adminDeleteSubmit:hover {
+.patientDeleteSubmit:hover {
   transition: all 0.3s ease-out;
   background: #3644E5;
   color: white;
@@ -98,24 +99,7 @@
 }
 
   
-  .registerForm{
-    
-      border-radius: 30px;
-      box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
-      text-align: center;
-      padding: 20px;
-      margin: 50px;
-      font-family: "Montserrat", sans-serif;
-      width: 50%;
-      
-  }
-  
-  .registerForm h2{
-    font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
-      margin-bottom: 15px;
-      margin-top: 12px;
-      
-  }
+
   
   .line {
       height: 3px; /* Adjust line thickness as needed */
@@ -152,77 +136,4 @@
     z-index: 0;
   }
   
-  .input-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-
-
-   .registerForm input{
-      font-family: "Montserrat", sans-serif;
-      margin: 10px;
-      border-radius: 30px;
-      border: 1px solid #cbcbcb;
-      padding: 10px 23px;
-      width: 70%;    
-   }
-
-   .registerForm select{
-    font-family: "Montserrat", sans-serif;
-    margin: 10px;
-    border-radius: 30px;
-    border: 1px solid #cbcbcb;
-    padding: 10px 23px;
-    width: 70%;   
-    padding-right: 20px; 
- }
   
-   .registerForm label{
-      font-family: "Montserrat", sans-serif;
-     
-   }
-  
-   .adminAddSubmit {
-    text-align: center;
-    margin-right: 40px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-      background-color: #4855E5;
-      color: white;
-      border: 1px solid #4855E5;
-      padding: 12px 26px;
-      font-size: 15px;
-      border-radius: 25px;
-      font-family: "Montserrat", sans-serif;
-      transition: all 0.2s ease-out;
-   }
-  
-   .adminAddSubmit:hover {
-    margin-top: 20px;
-      background-color: #343d9f;
-      border: 1px solid #343d9f;
-   }
-  
-   .backButton {
-      float: left;
-      margin-left: 40px;
-      margin-top: 20px;
-      background-color: white;
-      color: #4855E5;
-      padding: 12px 26px;
-      font-size: 15px;
-      border: 1px solid #4855E5;
-        border-radius: 25px;
-      font-family: "Montserrat", sans-serif;
-      transition: all 0.2s ease-out;
-   }
-  
-   .backButton:hover {
-    margin-top: 20px;
-      background-color: #4855E5;
-      border: 1px solid #4855E5;
-      color: white;
-   }
-   
-    

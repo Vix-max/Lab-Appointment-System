@@ -4,10 +4,12 @@ import './AdminProfile.css';
 import Footer from '../Footer';
 import EditAccount from '../EditAccount';
 import AdminSettings from '../AdminSettings';
+import PatientSettings from '../PatientSettings';
 import {Link} from 'react-router-dom'
 import { Button } from '../Button';
 import { useAuth } from '../../AuthContext'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 
  function AdminProfile(){
@@ -24,10 +26,12 @@ import 'react-toastify/dist/ReactToastify.css';
       const navigate = useNavigate();
 
       const handleLogout = () => {
-        logout();
-        navigate('/'); // Navigate to home page
-        window.location.reload(); // Refresh the page
-    };
+        setTimeout(() => {
+          logout();
+          navigate('/'); // Navigate to home page
+          window.location.reload(); // Refresh the page
+        }, 1000); // Adjust the delay as needed
+      };
 
 
      const [selectedUserType, setSelectedUserType] = useState(null);
@@ -189,7 +193,7 @@ import 'react-toastify/dist/ReactToastify.css';
     </li>
 
     <li className='cards__item3'>
-      <Link className='cards__item__link3' to="/" >
+      <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('patientsettings', event)}>
       <figure className='cards__item__pic-wrap3' >
           <img
             className='cards__item__img3'
@@ -220,6 +224,7 @@ import 'react-toastify/dist/ReactToastify.css';
       <>
         {selectedUserType === 'editaccount' && <EditAccount userType={selectedUserType}/>}
         {selectedUserType === 'adminsettings' && <AdminSettings userType={selectedUserType}/>}
+        {selectedUserType === 'patientsettings' && <PatientSettings userType={selectedUserType}/>}
       </>
     )}
 

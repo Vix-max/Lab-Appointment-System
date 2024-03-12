@@ -6,8 +6,11 @@ import Footer from './Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link,useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
 
 function AdminSettings({userType}) {
+
+  const { username: isLoggedUsername, logout } = useAuth(); // Get the username and userType from AuthContext
 
     useEffect(() => {
         window.scrollTo(0, 300); 
@@ -69,9 +72,48 @@ function AdminSettings({userType}) {
     }
   };
 
-  const handleAgeChange = (e) => {
-    setAge(e.target.value);
+  const [admins, setAdmins] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get('http://localhost:8080/admin/getAll');
+        setAdmins(response.data);
+      } catch (error) {
+        console.error('Error fetching admins:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const handleDeleteAdmin = async (adminUsername) => {
+    try {
+      // Make an HTTP DELETE request to delete the admin by ID
+      await axios.delete(`http://localhost:8080/admin/delete/${adminUsername}`);
+      // After successfully deleting, update the admin list
+      setAdmins(admins.filter(admin => admin.username !== adminUsername));
+      console.log(adminUsername," : User Deleted: ");
+      toast.dismiss();
+      toast.success("Admin Deleted Successfully", {
+        hideProgressBar: true, // Hide the loading bar
+      });
+      if(isLoggedUsername === adminUsername){
+        setTimeout(() => {
+          logout();
+          navigate('/'); // Navigate to home page
+          window.location.reload(); // Refresh the page
+        }, 2000);
+    }
+    } catch (error) {
+      toast.dismiss();
+      toast.error('An error occurred while Deleting the Admin');
+      console.log("error: ",error);
+    }
   };
+
+  
+
 
 
 
@@ -86,6 +128,7 @@ function AdminSettings({userType}) {
 
       <ToastContainer />
       {userType === 'adminsettings' && (
+        <div>
       <div className="formContainer">
           <form className='registerForm' onSubmit={handleSubmit}>
           <h2>Admin Register</h2>
@@ -100,7 +143,33 @@ function AdminSettings({userType}) {
           <button className='adminAddSubmit' type="submit">Add Admin</button>
         </form>
         
-      </div>
+    </div>
+    <div className='tableContainer'>
+    
+      <table className='adminTable'>
+      
+        <thead>
+          <tr>
+            <th colSpan="2" ><h2>Available Admins</h2></th>
+          </tr>
+          <tr>
+            <th colSpan="2"><div className='line'></div></th>
+            </tr>
+        </thead>
+        <tbody>
+          {admins.map(admin => (
+            <tr key={admin.id}>
+              <td>{admin.username}</td>
+              <td>
+                <button className='adminDeleteSubmit' onClick={() => handleDeleteAdmin(admin.username)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+    </div>
+    </div>
       )}
 
       <Footer />

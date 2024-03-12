@@ -11,8 +11,7 @@ import { useAuth } from '../AuthContext';
 
 function EditAccount({ userType }) {
 
-    const queryParams = new URLSearchParams(window.location.search);
-    const [currentusername, setCurrentUsername] = useState(queryParams.get('username')); // Define currentUsername state and its setter function
+    
 
     const [newUsername, setNewUsername] = useState('');
 
@@ -20,8 +19,10 @@ function EditAccount({ userType }) {
 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    
 
-    const { isLoggedIn, login } = useAuth();
+    const { isLoggedIn, login, username:currentusername } = useAuth();
+
 
     const navigate = useNavigate(); // Get navigate function
 
@@ -44,7 +45,6 @@ function EditAccount({ userType }) {
         const isLoggedUserType = "admin";
         toast.dismiss();
         toast.success("Username updated successfully!", { hideProgressBar: true });
-        setCurrentUsername(newUsername); // Update the currentusername state
         setNewUsername(''); // Clear the newUsername state for next update
         login(newUsername, isLoggedUserType); // Call the login function with the username
         
