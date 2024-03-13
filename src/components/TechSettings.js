@@ -124,6 +124,67 @@ console.log("Saved Shift ID:", technicianId);
   }
 };
 
+      const [techs, setTechs] = useState([]);
+      const [searchQuery, setSearchQuery] = useState('');
+      const [filteredTechs, setFilteredTechs] = useState([]);
+
+
+useEffect(() => {
+  async function fetchData() {
+    try {
+      const response = await axios.get('http://localhost:8080/tech/getAll');
+      
+      // Extract specific data fields from the response
+      const formattedTechs = response.data.map(tech => ({
+          id: tech.id,
+          fullName: tech.fullName, // Corrected property name
+          empNumber: tech.age,
+          age: tech.age,
+          gender: tech.gender,
+          mobileNumber: tech.mobileNumber, // Corrected property name
+          email: tech.email,
+        }));
+      
+      setTechs(formattedTechs);
+      setFilteredTechs(formattedTechs); 
+    } catch (error) {
+      console.error('Error fetching Technicians:', error);
+    }
+  }
+
+  fetchData();
+}, []);
+
+
+//Search Doctor
+const handleSearch = (query) => {
+  setSearchQuery(query);
+  const filtered = techs.filter(tech =>
+    tech.id.toString().includes(query) || tech.fullName.toLowerCase().includes(query.toLowerCase())
+  );
+  setFilteredTechs(filtered);
+};
+
+const handleDeleteTech = async (id) => {
+  try {
+    // Make an HTTP DELETE request to delete the doctor by ID
+    await axios.delete(`http://localhost:8080/tech/delete/${id}`);
+
+    await axios.delete(`http://localhost:8080/shift/deleteByTechId/${id}`);
+    
+    // After successfully deleting, update the patient list
+    setTechs(techs.filter(tech => tech.id !== id));
+
+    // Show success toast
+    toast.success('Technician Deleted Successfully', {
+      hideProgressBar: true,
+    });
+  } catch (error) {
+    console.error('Error deleting technician:', error);
+    // Show error toast
+    toast.error('An error occurred while deleting the doctor');
+  }
+};
 
 
   return (
@@ -301,6 +362,59 @@ console.log("Saved Shift ID:", technicianId);
           <br/><br/>
         </form>
         </div>
+
+        <div className='tableContainer'>
+            <table className='patienttable'>
+              <thead>
+              <tr>
+            <th  className="tableHeading" colSpan="8" ><h2>Available Technicians</h2>
+            
+                  {/* Search bar */}
+        <input
+              type="text"
+              placeholder="Search by ID or Name"
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+            
+            </th>
+          </tr>
+          <tr>
+            <th colSpan="8"><div className='line'></div></th>
+            </tr>
+            <tr>
+            
+            </tr>
+                <tr class="margin-bottom">
+                  <th>ID</th>
+                  <th>Full Name</th>
+                  <th>Age</th>
+                  <th>Gender</th>
+                  <th>Employee Number</th>
+                  <th>Mobile Number</th>
+                  <th>Email</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredTechs.map(tech => (
+                  <tr key={tech.id}>
+                    <td>{tech.id}</td>
+                    <td>{tech.fullName}</td> {/* Corrected property name */}
+                    <td>{tech.age}</td>
+                    <td>{tech.gender}</td>
+                    <td>{tech.empNumber}</td>
+                    <td>{tech.mobileNumber}</td> {/* Corrected property name */}
+                    <td>{tech.email}</td>
+                    
+                    <td>
+                      <button className='doctorDeleteSubmit' onClick={() => handleDeleteTech(tech.id)}>Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
         
       </div>
