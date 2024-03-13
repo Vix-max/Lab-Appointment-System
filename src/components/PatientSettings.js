@@ -9,6 +9,9 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function PatientSettings({ userType }) {
   const [patients, setPatients] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredPatients, setFilteredPatients] = useState([]);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -26,6 +29,7 @@ function PatientSettings({ userType }) {
         
         // Update the state with the formatted patient data
         setPatients(formattedPatients);
+        setFilteredPatients(formattedPatients); // Initialize filtered patients with all patients
       } catch (error) {
         console.error('Error fetching patients:', error);
       }
@@ -41,6 +45,7 @@ function PatientSettings({ userType }) {
       
       // After successfully deleting, update the patient list
       setPatients(patients.filter(patient => patient.id !== id));
+      setFilteredPatients(filteredPatients.filter(patient => patient.id !== id));
 
       // Show success toast
       toast.success('Patient Deleted Successfully', {
@@ -51,6 +56,15 @@ function PatientSettings({ userType }) {
       // Show error toast
       toast.error('An error occurred while deleting the patient');
     }
+  };
+
+  // Function to handle search
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const filtered = patients.filter(patient =>
+      patient.id.toString().includes(query) || patient.fullName.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredPatients(filtered);
   };
 
   return (
@@ -68,7 +82,14 @@ function PatientSettings({ userType }) {
             <table className='patienttable'>
               <thead>
               <tr>
-            <th colSpan="6" ><h2>Available Patients</h2></th>
+            <th className="tableHeading" colSpan="6" ><h2>Available Patients</h2>
+            <input
+            type="text"
+            placeholder="Search by ID or Name"
+            value={searchQuery}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
+            </th>
           </tr>
           <tr>
             <th colSpan="6"><div className='line'></div></th>
@@ -83,7 +104,7 @@ function PatientSettings({ userType }) {
                 </tr>
               </thead>
               <tbody>
-                {patients.map(patient => (
+                {filteredPatients.map(patient => (
                   <tr key={patient.id}>
                     <td>{patient.id}</td>
                     <td>{patient.fullName}</td> {/* Corrected property name */}

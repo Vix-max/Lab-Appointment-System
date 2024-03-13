@@ -2,18 +2,40 @@
     font-family: 'gwyner'; /* Choose any name for your font */
     src: url('../fonts/gwyner-condensed-light.ttf') format('truetype'); /* Update the path and format as needed */
   }
-  .backBtn{
-    margin-top: 20px;
-    margin-left: 50px;
-    float: left;
-    color: #224167;
-    font-size: 30px;
-  }
+  
 
-  .backButtin {
+  .hero{
+    background-image: url('../images/hero_background.png');
+    background-size: 200px 200px;
+    box-shadow: inset 0 0 0 1000px rgba(72, 85, 229, 0.85);
+    height: 40vh;
     display: flex;
-    justify-content: flex-start; /* Align items to the left */
-    align-items: center; /* Center items vertically */
+    flex-direction: column; /* Arrange children vertically */
+    align-items: flex-start; /* Align items to the left */
+    justify-content: center; /* Center vertically */
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  
+  .hero_h1{
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    padding: 0 160px;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    text-align: left;
+  }
+  
+   .hero_p{
+    line-height: 33px;
+    font-family: "Montserrat", sans-serif;
+    padding: 0 160px;
+    color: white;
+    margin: 0;
+    text-align: left;
   }
   
   .formContainer{
@@ -21,82 +43,6 @@
     justify-content: center; /* Horizontally center the content */
     align-items: center; /* Vertically center the content */
   }
-
-  
-  .tableContainer{
-  text-align: center;
-  justify-content: center; /* Horizontally center the content */
-  align-items: center; /* Vertically center the content */
-  padding: 50px;
-}
-
-.adminTable {
-  border-radius: 30px;
-  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
-  text-align: center;
-  margin: 50px;
-  font-family: "Montserrat", sans-serif;
-  width: 50%;
-  margin: 0 auto; /* Center the table horizontally */
-  padding: 20px;
-  width: 60%; /* Set the table width to 100% */
-  margin: 0 auto; /* Center the table horizontally */
-  text-align: center; /* Center the table content */
-  border-spacing: 0;
-}
-
-.adminTable th,
-.adminTable td,
-.adminTable tr {
-  
-  border-spacing: 0; /* Remove any spacing between adjacent cells */
-  text-align: center; /* Center the content of th, td, and tr */
-}
-
-.adminTable th {
-  width: 100%; /* Set th width to 100% */
-  text-align: center; /* Center the content of th */
-}
-
-.adminTable td {
-  
-  padding: 15px;
-  border-spacing: 0; /* Remove any spacing between adjacent cells */
-  text-align: center; /* Center the content of th, td, and tr */
-  border-bottom: 1px solid #c5c5c5; /* Add border to the right side of the cell */
-}
-
-
-.adminTable h2{
-  font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
-    margin-bottom: 15px;
-    margin-top: 12px;
-    
-}
-
-.adminTable td {
-  font-family: "Montserrat", sans-serif;
-}
-
-.adminDeleteSubmit{
-  background-color: transparent;
-  color: #4855E5;
-  font-family: "Montserrat", sans-serif;
-  padding: 8px 20px;
-  border: 1px solid #4855E5;
-  transition: all 0.3s ease-out;
-  padding: 12px 26px;
-  font-size: 15px;
-  border-radius: 25px;
-}
-
-.adminDeleteSubmit:hover {
-  transition: all 0.3s ease-out;
-  background: #3644E5;
-  color: white;
-  transition: 250ms;
-}
-
   
   .registerForm{
     
@@ -182,12 +128,15 @@
       font-family: "Montserrat", sans-serif;
      
    }
+
+   .registerForm option{
+    font-family: "Montserrat", sans-serif;
+   
+ }
   
-   .adminAddSubmit {
-    text-align: center;
+   .formDoctorSubmit {
     margin-right: 40px;
     margin-top: 20px;
-    margin-bottom: 20px;
       background-color: #4855E5;
       color: white;
       border: 1px solid #4855E5;
@@ -198,7 +147,7 @@
       transition: all 0.2s ease-out;
    }
   
-   .adminAddSubmit:hover {
+   .formDoctorSubmit:hover {
     margin-top: 20px;
       background-color: #343d9f;
       border: 1px solid #343d9f;
@@ -225,7 +174,26 @@
       color: white;
    }
 
-   .adminTable input{
+   .doctorDeleteSubmit{
+    background-color: transparent;
+    color: #4855E5;
+    font-family: "Montserrat", sans-serif;
+    padding: 8px 20px;
+    border: 1px solid #4855E5;
+    transition: all 0.3s ease-out;
+    padding: 12px 26px;
+    font-size: 15px;
+    border-radius: 25px;
+  }
+  
+  .doctorDeleteSubmit:hover {
+    transition: all 0.3s ease-out;
+    background: #3644E5;
+    color: white;
+    transition: 250ms;
+  }
+  
+  .patienttable input{
     font-family: "Montserrat", sans-serif;
     margin: 10px;
     border-radius: 30px;
@@ -233,11 +201,5 @@
     padding: 10px 23px;
     width: 70%;    
  }
-
- .adminTable th:first-child,
-.adminTable td:first-child {
-  width: 20%; /* Adjust the width of the first column */
-}
-   
    
     

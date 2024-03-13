@@ -47,6 +47,10 @@
   text-align: center; /* Center the content of th, td, and tr */
 }
 
+.tableHeading{
+  padding-bottom: 0px !important;;
+}
+
 .patienttable th {
   text-align: center; /* Center the content of th */
   font-family: "Montserrat", sans-serif;

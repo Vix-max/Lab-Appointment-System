@@ -21,6 +21,9 @@ function AdminSettings({userType}) {
   const [userDetails, setUserDetails] = useState(null); // State to store user details
   const navigate = useNavigate();
 
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredAdmins, setFilteredAdmins] = useState([]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -79,6 +82,7 @@ function AdminSettings({userType}) {
       try {
         const response = await axios.get('http://localhost:8080/admin/getAll');
         setAdmins(response.data);
+        setFilteredAdmins(response.data);
       } catch (error) {
         console.error('Error fetching admins:', error);
       }
@@ -110,6 +114,16 @@ function AdminSettings({userType}) {
       toast.error('An error occurred while Deleting the Admin');
       console.log("error: ",error);
     }
+  };
+
+  // Function to handle search
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    const filtered = admins.filter(admin =>
+      admin.username.toLowerCase().includes(query.toLowerCase()) ||
+      admin.id.toString().includes(query)
+    );
+    setFilteredAdmins(filtered);
   };
 
   
@@ -150,15 +164,30 @@ function AdminSettings({userType}) {
       
         <thead>
           <tr>
-            <th colSpan="2" ><h2>Available Admins</h2></th>
+            <th colSpan="3" ><h2>Available Admins</h2>
+            {/* Search bar */}
+            <input
+              type="text"
+              placeholder="Search by ID or Username"
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+            />
+            </th>
           </tr>
           <tr>
-            <th colSpan="2"><div className='line'></div></th>
+            <th colSpan="3"><div className='line'></div></th>
             </tr>
+            <tr >
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>Action</th>
+                </tr>
+          
         </thead>
         <tbody>
-          {admins.map(admin => (
+          {filteredAdmins.map(admin => (
             <tr key={admin.id}>
+              <td>{admin.id}</td>
               <td>{admin.username}</td>
               <td>
                 <button className='adminDeleteSubmit' onClick={() => handleDeleteAdmin(admin.username)}>Delete</button>

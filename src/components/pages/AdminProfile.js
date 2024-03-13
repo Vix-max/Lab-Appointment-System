@@ -5,11 +5,13 @@ import Footer from '../Footer';
 import EditAccount from '../EditAccount';
 import AdminSettings from '../AdminSettings';
 import PatientSettings from '../PatientSettings';
+import DoctorSettings from '../DoctorSettings';
 import {Link} from 'react-router-dom'
 import { Button } from '../Button';
 import { useAuth } from '../../AuthContext'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import TechSettings from '../TechSettings';
 
 
  function AdminProfile(){
@@ -159,7 +161,7 @@ import { toast } from 'react-toastify';
 
 
     <li className='cards__item3'>
-      <Link className='cards__item__link3' to="/" >
+      <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('doctorsettings', event)}>
       <figure className='cards__item__pic-wrap3' >
           <img
             className='cards__item__img3'
@@ -177,7 +179,7 @@ import { toast } from 'react-toastify';
 
 
     <li className='cards__item3'>
-      <Link className='cards__item__link3' to="/" >
+      <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('techsettings', event)}>
       <figure className='cards__item__pic-wrap3' >
           <img
             className='cards__item__img3'
@@ -225,6 +227,9 @@ import { toast } from 'react-toastify';
         {selectedUserType === 'editaccount' && <EditAccount userType={selectedUserType}/>}
         {selectedUserType === 'adminsettings' && <AdminSettings userType={selectedUserType}/>}
         {selectedUserType === 'patientsettings' && <PatientSettings userType={selectedUserType}/>}
+        {selectedUserType === 'doctorsettings' && <DoctorSettings userType={selectedUserType}/>}
+        {selectedUserType === 'techsettings' && <TechSettings userType={selectedUserType}/>}
+        
       </>
     )}
 
