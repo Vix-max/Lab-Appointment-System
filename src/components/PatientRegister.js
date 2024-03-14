@@ -5,6 +5,7 @@ import './PatientRegister.css';
 import Footer from './Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuth } from '../AuthContext'; // Import useAuth hook
 
 import { useNavigate } from 'react-router-dom';
 
@@ -14,9 +15,14 @@ function RegisterForms( ) {
   const [userDetails, setUserDetails] = useState(null); // State to store user details
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  
+  const {  login } = useAuth();
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
 
     const fullName = document.getElementById('fullName').value;
     const age = document.getElementById('age').value;
@@ -71,7 +77,9 @@ function RegisterForms( ) {
       toast.success("Patient Registered Successfully", {
         hideProgressBar: true, // Hide the loading bar
       });
+      
       setIsLoggedIn(true);
+      login(username,"patient");
       setTimeout(() => {
         navigate('/patientprofile', { state: { userDetails: username } }); // Pass userDetails as state
       }, 2000);

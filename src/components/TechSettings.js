@@ -29,6 +29,7 @@ function TechSettings({userType}) {
   });
   const [gender, setGender] = useState('');
   const [age, setAge] = useState('');
+  const [special, setSpecial] = useState('');
 
   const handleGenderChange = (e) => {
     setGender(e.target.value);
@@ -36,6 +37,10 @@ function TechSettings({userType}) {
 
   const handleAgeChange = (e) => {
     setAge(e.target.value);
+  };
+
+  const handleSpecialChange = (e) => {
+    setSpecial(e.target.value);
   };
 
   const handleClockChange = (day, type, value) => {
@@ -89,6 +94,7 @@ function TechSettings({userType}) {
         empNumber,
         age,
         gender,
+        special,
         mobileNumber,
         email,
         username,
@@ -140,9 +146,10 @@ useEffect(() => {
       const formattedTechs = response.data.map(tech => ({
           id: tech.id,
           fullName: tech.fullName, // Corrected property name
-          empNumber: tech.age,
+          empNumber: tech.empNumber,
           age: tech.age,
           gender: tech.gender,
+          special: tech.special,
           mobileNumber: tech.mobileNumber, // Corrected property name
           email: tech.email,
         }));
@@ -271,6 +278,22 @@ const handleCloseShiftTable = () => {
 </div>
 </div>
 
+<br/>
+<select value={special} onChange={(e) => setSpecial(e.target.value)} id="special">
+<option value="">Select Specialization</option>
+<option value="Clinical Chemistry">Clinical Chemistry</option>
+<option value="Hematology">Hematology</option>
+<option value="Microbiology">Microbiology</option>
+<option value="Immunology/Serology">Immunology/Serology</option>
+<option value="Histotechnology">Histotechnology</option>
+<option value="Cytotechnology">Cytotechnology</option>
+<option value="Phlebotomy">Phlebotomy</option>
+<option value="Molecular Diagnostics">Molecular Diagnostics</option>
+<option value="Toxicology">Toxicology</option>
+
+ 
+</select>
+
 <br />
 <input type="text" placeholder="Mobile Number" id="mobileNumber" value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
 <br />
@@ -397,7 +420,7 @@ const handleCloseShiftTable = () => {
             <table className='patienttable'>
               <thead>
               <tr>
-            <th  className="tableHeading" colSpan="8" ><h2>Available Technicians</h2>
+            <th  className="tableHeading" colSpan="10" ><h2>Available Technicians</h2>
             
                   {/* Search bar */}
         <input
@@ -410,7 +433,7 @@ const handleCloseShiftTable = () => {
             </th>
           </tr>
           <tr>
-            <th colSpan="8"><div className='line'></div></th>
+            <th colSpan="10"><div className='line'></div></th>
             </tr>
             <tr>
             
@@ -420,6 +443,7 @@ const handleCloseShiftTable = () => {
                   <th>Full Name</th>
                   <th>Age</th>
                   <th>Gender</th>
+                  <th>Specialization</th>
                   <th>Employee Number</th>
                   <th>Mobile Number</th>
                   <th>Email</th>
@@ -433,6 +457,7 @@ const handleCloseShiftTable = () => {
                     <td>{tech.fullName}</td> {/* Corrected property name */}
                     <td>{tech.age}</td>
                     <td>{tech.gender}</td>
+                    <td>{tech.special}</td>
                     <td>{tech.empNumber}</td>
                     <td>{tech.mobileNumber}</td> {/* Corrected property name */}
                     <td>{tech.email}</td>
