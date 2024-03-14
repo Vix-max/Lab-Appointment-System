@@ -9,6 +9,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function TechSettings({userType}) {
+
+  const [selectedTechId, setSelectedTechId] = useState(null);
   
   const [fullName, setFullName] = useState('');
   const [empNumber, setEmpNumber] = useState('');
@@ -185,6 +187,33 @@ const handleDeleteTech = async (id) => {
     toast.error('An error occurred while deleting the doctor');
   }
 };
+
+
+//View Shift
+const [shiftsForView, setShiftsForView] = useState([]);
+
+const handleViewShifts = async (id) => {
+  try {
+    const response = await axios.get(`http://localhost:8080/shift/getByTechId/${id}`);
+    const formattedShifts = response.data.map(shift => ({
+      date: shift.date,
+      startTime: shift.startTime,
+      endTime: shift.endTime,
+    }));
+    setShiftsForView(formattedShifts);
+    setSelectedTechId(id);
+  } catch (error) {
+    console.error('Error fetching shifts:', error);
+    toast.error('An error occurred while fetching shifts');
+  }
+};
+
+const handleCloseShiftTable = () => {
+  setSelectedTechId(null);
+  setShiftsForView([]);
+};
+
+
 
 
   return (
@@ -364,6 +393,7 @@ const handleDeleteTech = async (id) => {
         </div>
 
         <div className='tableContainer'>
+        
             <table className='patienttable'>
               <thead>
               <tr>
@@ -408,12 +438,47 @@ const handleDeleteTech = async (id) => {
                     <td>{tech.email}</td>
                     
                     <td>
+                    <button className='viewShiftsButton' onClick={() => handleViewShifts(tech.id)}>View Shifts</button>
                       <button className='doctorDeleteSubmit' onClick={() => handleDeleteTech(tech.id)}>Delete</button>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
+
+            {shiftsForView.length > 0 && (
+        <div className='shiftTablediv'>
+          
+          <table className='shiftTable'>
+            
+            <thead>
+            <tr>
+          <th className="tableHeading" colSpan="6" ><h2>Shift Details</h2></th>
+          </tr>
+          <tr>
+            <th colSpan="6"><div className='line'></div></th>
+            </tr>
+              
+            </thead>
+            <tr>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+              </tr>
+            <tbody>
+              {shiftsForView.map((shift, index) => (
+                <tr key={index}>
+                  <td>{shift.date}</td>
+                  <td>{shift.startTime}</td>
+                  <td>{shift.endTime}</td>
+                </tr>
+              ))}
+            </tbody>
+            
+          </table>
+          <button className='shiftCloseButton' onClick={handleCloseShiftTable}>Close Shifts</button>
+        </div>
+      )}
           </div>
 
         
