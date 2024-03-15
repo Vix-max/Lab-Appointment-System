@@ -326,13 +326,13 @@
   transition: 250ms;
 }
 
-.onShift{
+.available{
     font-family: "Montserrat", sans-serif;
     color: rgb(1, 194, 1);
     font-weight: 700;
 }
 
-.notOnShift{
+.unavailable{
     font-family: "Montserrat", sans-serif;
     color: red;
     font-weight: 700;
