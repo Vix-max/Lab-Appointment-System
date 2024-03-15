@@ -12,6 +12,7 @@ import AdminProfile from './components/pages/AdminProfile';
 import PatientRegister from './components/PatientRegister';
 import PatientProfile from './components/pages/PatientProfile';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
+import AppointmentPayment from './components/pages/AppointmentPayment';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path='/adminprofile' exact element={<AdminProfile/>} />
           <Route path='/patientregister' exact element={<PatientRegister/>} />
           <Route path='/patientProfile' exact element={<PatientProfile/>} />
+          <Route path='/appointmentpayment' exact element={<AppointmentPayment/>} />
         </Routes>
       </Router>
     </>

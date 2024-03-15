@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {Link} from 'react-router-dom'
 import EditAccountPatient from '../EditAccountPatient';
 import ViewTechPatient from '../ViewTechPatient';
+import PatientAppointment from '../PatientAppointment';
 
 
  function PatientProfile(){
@@ -64,7 +65,7 @@ import ViewTechPatient from '../ViewTechPatient';
     </figure>
     <div className='cards__item__info3'>
       <h5 className='cards__item__text3'>Edit Account</h5>
-      <p className='cards__item__text__p3'>View, Edit or Delete your personal account</p>
+      <p className='cards__item__text__p3'>View, Edit or Delete your Personal account and Personal details</p>
     </div>
   </Link>
 </li>
@@ -72,7 +73,7 @@ import ViewTechPatient from '../ViewTechPatient';
 
 
 <li className='cards__item4'>
-  <Link className='cards__item__link4' to="/" >
+  <Link className='cards__item__link4' to="/" onClick={(event) => handleUserTypeSelect('patientappointment', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -177,7 +178,7 @@ import ViewTechPatient from '../ViewTechPatient';
                   <>
                     {selectedUserType === 'editaccountpatient' && <EditAccountPatient userType={selectedUserType}/>}
                     {selectedUserType === 'viewtechpatient' && <ViewTechPatient userType={selectedUserType}/>}
-                    
+                    {selectedUserType === 'patientappointment' && <PatientAppointment userType={selectedUserType}/>}
                     
                   </>
                 )}

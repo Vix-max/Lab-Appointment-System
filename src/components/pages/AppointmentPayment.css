@@ -1,0 +1,269 @@
+@font-face {
+    font-family: 'gwyner'; /* Choose any name for your font */
+    src: url('../../fonts/gwyner-condensed-light.ttf') format('truetype'); /* Update the path and format as needed */
+  }
+  
+  .icon-input {
+    padding-left: 25px; /* Adjust padding for icon width */
+    position: relative; /* Enable absolute positioning for icon */
+  }
+  
+  
+  
+  .formContainerPay{
+
+      display: flex;
+      margin-top: 100px;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+  }
+  
+  .registerFormpay{
+    
+      border-radius: 30px;
+      box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
+      text-align: center;
+      padding: 20px;
+      margin: 50px;
+      font-family: "Montserrat", sans-serif;
+      width: 35%;
+      
+  }
+  
+  .registerFormpay h2{
+    font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
+      margin-bottom: 15px;
+      margin-top: 12px;
+      
+  }
+  
+  .line {
+      height: 3px; /* Adjust line thickness as needed */
+      margin-bottom: 20px;
+      background-color: white;
+      text-align: center;
+      padding-bottom: 15px;
+      position: relative; /* Needed for pseudo-elements to work within the banner */
+  }
+  
+  
+  
+  .line::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.8) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  .line::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.3) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+
+  .timeSelect option{
+    padding: 20px !important;
+  }
+
+
+     .registerFormpay input{
+      font-family: "Montserrat", sans-serif;
+      margin: 10px;
+      border-radius: 30px;
+      border: 1px solid #cbcbcb;
+      padding: 10px 23px;
+      width: 100%;    
+   }
+
+   .react-datepicker-wrapper{
+    width: 100%;
+   }
+
+   
+
+   .registerFormpay textarea{
+    resize: vertical; /* Allow vertical resizing only */
+
+    font-family: "Montserrat", sans-serif;
+    margin: 10px;
+    border-radius: 30px;
+    border: 1px solid #cbcbcb;
+    padding: 10px 23px;
+    width: 70%;    
+ }
+
+   .registerFormpay select{
+    font-family: "Montserrat", sans-serif;
+    margin: 10px;
+    border-radius: 30px;
+    border: 1px solid #cbcbcb;
+    padding: 10px 23px;
+    width: 70%;   
+    padding-right: 20px; 
+ }
+  
+   .registerFormpay label{
+      font-family: "Montserrat", sans-serif;
+     
+   }
+  
+   .formSubmitAppointment {
+    
+    margin: 20px; 
+      background-color: #4855E5;
+      color: white;
+      border: 1px solid #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .formSubmitAppointment:hover {
+    margin-top: 20px;
+      background-color: #343d9f;
+      border: 1px solid #343d9f;
+   }
+
+   .paymentRadio{
+    float: left;
+    width: 20px !important;
+   }
+   .fa-money-bill{
+    margin-top: 8px;
+    float: left;
+    color: #a3a3a3;
+    font-size: 20px;
+   }
+
+   .paymentRadio[type="radio"]:checked {
+    background-color: #ff0000; /* Checked background color */
+    border-color: #007bff; /* Checked border color */
+  }
+
+   .fa-credit-card{
+    margin-top: 8px;
+    float: left;
+    color: #a3a3a3;
+    font-size: 20px;
+   }
+
+   .paymentInside{
+    margin: auto;
+    width: 25%
+   }
+
+   .paymentHead{
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+   }
+
+   .paymentLabel{
+    margin-top: 5px;
+   float: left;
+   }
+   
+  
+   .backButton {
+      float: left;
+      margin-left: 40px;
+      margin-top: 20px;
+      background-color: white;
+      color: #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border: 1px solid #4855E5;
+        border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .backButton:hover {
+    margin-top: 20px;
+      background-color: #4855E5;
+      border: 1px solid #4855E5;
+      color: white;
+   }
+   
+   .input-text{
+    font-size: 14px;
+    margin-left: 16px;
+    float: left;
+   }
+
+   .inner_div2{
+    margin: auto;
+    width: 70%;
+   }
+
+   .expiry{
+    display: inline-block;
+    width: 35%;
+   }
+
+   .cvc{
+    margin-left: 10px;
+    display: inline-block;
+    width:35%
+   }
+
+   .input-container {
+    position: relative;
+  }
+  
+  .input-with-icon1 {
+    text-align: center;
+    padding-left: 30px; /* Adjust as needed based on the icon size */
+    background-image: url('../../images/name.svg');
+    background-size: 13px; /* Adjust the size of the icon */
+    background-position: 10px center; /* Adjust the position of the icon */
+    background-repeat: no-repeat;
+  }
+
+  .input-with-icon2 {
+    text-align: center;
+    padding-left: 30px; /* Adjust as needed based on the icon size */
+    background-image: url('../../images/card.svg');
+    background-size: 13px; /* Adjust the size of the icon */
+    background-position: 10px center; /* Adjust the position of the icon */
+    background-repeat: no-repeat;
+  }
+
+  .input-with-icon3 {
+   
+    text-align: center;
+    background-image: url('../../images/expiry.svg');
+    background-size: 13px; /* Adjust the size of the icon */
+    background-position: 10px center; /* Adjust the position of the icon */
+    background-repeat: no-repeat;
+  }
+
+  .input-with-icon4 {
+    text-align: center;
+    background-image: url('../../images/cvc.svg');
+    background-size: 13px; /* Adjust the size of the icon */
+    background-position: 10px center; /* Adjust the position of the icon */
+    background-repeat: no-repeat;
+  }
+  
+    

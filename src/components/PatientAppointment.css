@@ -1,0 +1,234 @@
+@font-face {
+    font-family: 'gwyner'; /* Choose any name for your font */
+    src: url('../fonts/gwyner-condensed-light.ttf') format('truetype'); /* Update the path and format as needed */
+  }
+  
+
+  .hero{
+    background-image: url('../images/hero_background.png');
+    background-size: 200px 200px;
+    box-shadow: inset 0 0 0 1000px rgba(72, 85, 229, 0.85);
+    height: 40vh;
+    display: flex;
+    flex-direction: column; /* Arrange children vertically */
+    align-items: flex-start; /* Align items to the left */
+    justify-content: center; /* Center vertically */
+    margin-bottom: 10px;
+  }
+  
+  
+  
+  
+  .hero_h1{
+    font-family: "Montserrat", sans-serif;
+    color: white;
+    padding: 0 160px;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    text-align: left;
+  }
+  
+   .hero_p{
+    line-height: 33px;
+    font-family: "Montserrat", sans-serif;
+    padding: 0 160px;
+    color: white;
+    margin: 0;
+    text-align: left;
+  }
+  
+  .formContainer{
+      display: flex;
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+  }
+  
+  .registerForm{
+    
+      border-radius: 30px;
+      box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
+      text-align: center;
+      padding: 20px;
+      margin: 50px;
+      font-family: "Montserrat", sans-serif;
+      width: 65%;
+      
+  }
+  
+  .registerForm h2{
+    font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
+      margin-bottom: 15px;
+      margin-top: 12px;
+      
+  }
+  
+  .line {
+      height: 3px; /* Adjust line thickness as needed */
+      margin-bottom: 20px;
+      background-color: white;
+      text-align: center;
+      padding-bottom: 15px;
+      position: relative; /* Needed for pseudo-elements to work within the banner */
+  }
+  
+  
+  
+  .line::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.8) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  .line::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.3) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+
+  .timeSelect option{
+    padding: 20px !important;
+  }
+
+
+     .registerForm input{
+      font-family: "Montserrat", sans-serif;
+      margin: 10px;
+      border-radius: 30px;
+      border: 1px solid #cbcbcb;
+      padding: 10px 23px;
+      width: 70%;    
+   }
+
+   .react-datepicker-wrapper{
+    width: 100%;
+   }
+
+   
+
+   .registerForm textarea{
+    resize: vertical; /* Allow vertical resizing only */
+
+    font-family: "Montserrat", sans-serif;
+    margin: 10px;
+    border-radius: 30px;
+    border: 1px solid #cbcbcb;
+    padding: 10px 23px;
+    width: 70%;    
+ }
+
+   .registerForm select{
+    font-family: "Montserrat", sans-serif;
+    margin: 10px;
+    border-radius: 30px;
+    border: 1px solid #cbcbcb;
+    padding: 10px 23px;
+    width: 70%;   
+    padding-right: 20px; 
+ }
+  
+   .registerForm label{
+      font-family: "Montserrat", sans-serif;
+     
+   }
+  
+   .formSubmitAppointment {
+    
+    margin: 20px; 
+      background-color: #4855E5;
+      color: white;
+      border: 1px solid #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .formSubmitAppointment:hover {
+    margin-top: 20px;
+      background-color: #343d9f;
+      border: 1px solid #343d9f;
+   }
+
+   .paymentRadio{
+    float: left;
+    width: 20px !important;
+   }
+   .fa-money-bill{
+    margin-top: 8px;
+    float: left;
+    color: #a3a3a3;
+    font-size: 20px;
+   }
+
+   .paymentRadio[type="radio"]:checked {
+    background-color: #ff0000; /* Checked background color */
+    border-color: #007bff; /* Checked border color */
+  }
+
+   .fa-credit-card{
+    margin-top: 8px;
+    float: left;
+    color: #a3a3a3;
+    font-size: 20px;
+   }
+
+   .paymentInside{
+    margin: auto;
+    width: 25%
+   }
+
+   .paymentHead{
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+   }
+
+   .paymentLabel{
+    margin-top: 5px;
+   float: left;
+   }
+   
+  
+   .backButton {
+      float: left;
+      margin-left: 40px;
+      margin-top: 20px;
+      background-color: white;
+      color: #4855E5;
+      padding: 12px 26px;
+      font-size: 15px;
+      border: 1px solid #4855E5;
+        border-radius: 25px;
+      font-family: "Montserrat", sans-serif;
+      transition: all 0.2s ease-out;
+   }
+  
+   .backButton:hover {
+    margin-top: 20px;
+      background-color: #4855E5;
+      border: 1px solid #4855E5;
+      color: white;
+   }
+   
+    

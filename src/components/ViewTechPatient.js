@@ -141,7 +141,7 @@ function ViewTechPatient({userType}) {
         <table className='patienttable'>
           <thead>
           <tr>
-        <th  className="tableHeading" colSpan="8" ><h2>Available Technicians</h2>
+        <th  className="tableHeading" colSpan="9" ><h2>Available Technicians</h2>
         
               {/* Search bar */}
     <input
@@ -154,7 +154,7 @@ function ViewTechPatient({userType}) {
         </th>
       </tr>
       <tr>
-        <th colSpan="8"><div className='line'></div></th>
+        <th colSpan="9"><div className='line'></div></th>
         </tr>
         <tr>
         
