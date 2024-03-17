@@ -11,7 +11,7 @@ import './ViewAppointmentPatient.css';
 function ViewAppointmentPatient({userType}) {
 
     
-    const { username } = useAuth();
+  const { username } = useAuth();
   const [appointment, setAppointments] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredAppointment, setFilteredAppointment] = useState([]);

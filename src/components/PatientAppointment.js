@@ -207,7 +207,7 @@ function PatientAppointment({ userType }) {
 
               <div className="file-upload">
                 <label className='input-text'>Upload Past Medical Reports:</label><br />
-                <input className='uploadFile' type="file" id="report" onChange={handleFileChange} accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+                <input className='uploadFile' type="file" id="report" onChange={handleFileChange} accept=".pdf" />
               </div>
 
               <br/>

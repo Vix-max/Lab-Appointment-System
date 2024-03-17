@@ -6,6 +6,7 @@ import EditAccount from '../EditAccount';
 import AdminSettings from '../AdminSettings';
 import PatientSettings from '../PatientSettings';
 import DoctorSettings from '../DoctorSettings';
+import AppointmentSettings from '../AppointmentSettings';
 import {Link} from 'react-router-dom'
 import { Button } from '../Button';
 import { useAuth } from '../../AuthContext'; // Import useAuth hook
@@ -123,7 +124,7 @@ import TechSettings from '../TechSettings';
 
 
 <li className='cards__item3'>
-  <Link className='cards__item__link3' to="/" >
+  <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('appointmentsettings', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -229,6 +230,7 @@ import TechSettings from '../TechSettings';
         {selectedUserType === 'patientsettings' && <PatientSettings userType={selectedUserType}/>}
         {selectedUserType === 'doctorsettings' && <DoctorSettings userType={selectedUserType}/>}
         {selectedUserType === 'techsettings' && <TechSettings userType={selectedUserType}/>}
+        {selectedUserType === 'appointmentsettings' && <AppointmentSettings userType={selectedUserType}/>}
         
       </>
     )}
