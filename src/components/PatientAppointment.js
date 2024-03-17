@@ -8,7 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useAuth } from '../AuthContext'; // Import useAuth hook
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import AppointmentInvoice from './AppointmentInvoice';
 
 
 
@@ -23,6 +24,14 @@ function PatientAppointment({ userType }) {
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
   const [selectedTest, setSelectedTest] = useState('');
+  const [selectedUserType, setSelectedUserType] = useState(null);
+  const [appointmentDetails, setAppointmentDetails] = useState(null);
+
+  // State variable to hold fetched appointments
+  const [appointments, setAppointments] = useState([]);
+
+  const {  username } = useAuth();
+
   const navigate = useNavigate();
   
 
@@ -50,6 +59,8 @@ function PatientAppointment({ userType }) {
       toast.error('An error occurred while fetching doctors');
     }
   };
+
+
 
   const handleDoctorChange = (event) => {
     const selectedValue = event.target.value;
@@ -101,38 +112,78 @@ function PatientAppointment({ userType }) {
 
   const timeSlots = generateTimeSlots();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    if (!selectedDate || !selectedTime || !selectedPaymentMethod || !selectedTest) {
+
+    // Validate if required fields are filled
+    if (!selectedDate || !selectedTime || !selectedPaymentMethod || !selectedTest || !file) {
       toast.error("Please fill in all fields", { hideProgressBar: true });
       return;
     }
-  
+
     const reason = document.getElementById('reason').value.trim();
-  
-    if (reason === '') {
-      toast.error("Please fill in all fields", { hideProgressBar: true });
-      return;
+    const description = document.getElementById('description').value.trim();
+
+    try {
+      // Create a FormData object
+      const formData = new FormData();
+      formData.append('selectedTest', selectedTest);
+      formData.append('reason', reason);
+      formData.append('description', description);
+      formData.append('file', file);
+      formData.append('selectedDoctor', selectedDoctor);
+      formData.append('selectedDate', selectedDate);
+      formData.append('selectedTime', selectedTime);
+      formData.append('selectedPaymentMethod', selectedPaymentMethod);
+      formData.append('username', username);
+      formData.append('report', file); // Append the file directly
+      formData.append('reportStatus', 'Pending'); // Include the default report status
+
+      // Send the formData to the server
+      const response = await axios.post('http://localhost:8080/appointment/add', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      console.log(response.data);
+
+      // Display success message
+      toast.dismiss();
+      toast.success("Appointment Registered Successfully", {
+        hideProgressBar: true,
+      });
+
+      // Update state with appointment details
+      setAppointmentDetails(response.data);
+
+      // Navigate based on payment method
+      if (selectedPaymentMethod === 'Cash') {
+        navigate('/appointmentinvoice');
+      } else if (selectedPaymentMethod === 'Card') {
+        // Navigate to payment page
+        navigate('/appointmentpayment');
+      }
+    } catch (error) {
+      console.error('Error registering patient:', error);
+      toast.error('An error occurred while registering the patient');
     }
+};
+
   
-    if (selectedDoctor !== 'Other' && selectedDoctor.trim() === '') {
-      toast.error("Please select a doctor", { hideProgressBar: true });
-      return;
-    }
   
-    if (selectedDoctor === 'Other' && otherDoctor.trim() === '') {
-      toast.error("Please fill in the other doctor's name", { hideProgressBar: true });
-      return;
-    }
+
   
-    if (selectedPaymentMethod === 'Credit Card') {
-      navigate('/appointmentpayment');
-    } else if (selectedPaymentMethod === 'Cash') {
-      toast.success("Done", { hideProgressBar: true });
-    } else {
-      // Handle other payment methods if needed
-    }
+  
+  
+  
+  
+
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const uploadedFile = event.target.files[0];
+    setFile(uploadedFile);
   };
   
   
@@ -142,7 +193,14 @@ function PatientAppointment({ userType }) {
   return (
     <div>
         <ToastContainer />
+
       {userType === 'patientappointment' && (
+        <div>
+          <div className='backButtin'>
+        <Link className="backBtn" onClick={() => window.location.reload()}>
+          <i className="fa-solid fa-arrow-left"></i>
+        </Link>
+      </div>
         <div className="formContainer">
           <form className='registerForm' onSubmit={handleSubmit} >
             <h2> Make an Appointment </h2>
@@ -163,8 +221,16 @@ function PatientAppointment({ userType }) {
             <input type="text" placeholder="Reason for the Appointment" id="reason" />
             <br />
             <br />
-            <textarea rows="10" cols="40" name="message" placeholder="Any relevant medical conditions or details (if none leave empty)" id="reason"/>
+            <textarea rows="10" cols="40" name="message" placeholder="Any relevant medical conditions or details (if none leave empty)" id="description"/>
             <br />
+
+            <div className="file-upload">
+            <label className='input-text'>Upload Past Medical Reports:</label><br />
+            <input className='uploadFile' type="file" id="report" onChange={handleFileChange} accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" />
+          </div>
+
+            <br/>
+
             <select value={showOtherDoctorInput ? 'Other' : selectedDoctor} onChange={handleDoctorChange}>
               <option value="">Recommended Doctor</option>
               {/* Map over the doctors' names and create an option for each */}
@@ -185,11 +251,11 @@ function PatientAppointment({ userType }) {
             /> 
             <br/>
             <select className='timeSelect' value={selectedTime} onChange={handleTimeChange}>
-        <option value="">Select an Appointment Time</option>
-        {timeSlots.map((timeSlot, index) => (
-          <option key={index} value={timeSlot}>{timeSlot}</option>
-        ))}
-      </select>
+  <option value="">Select an Appointment Time</option>
+  {timeSlots.map((timeSlot, index) => (
+    <option key={index} value={timeSlot.time} disabled={!timeSlot.available}>{timeSlot.time}</option>
+  ))}
+</select>
             <br /><br />
             <div>
             <br/>
@@ -198,7 +264,7 @@ function PatientAppointment({ userType }) {
               <div className='paymentInside'>
               <i class="fa-solid fa-credit-card"></i>
               
-              <input className='paymentRadio' type="radio" id="creditCard" name="paymentMethod" value="Credit Card" onChange={handlePaymentMethodChange} />
+              <input className='paymentRadio' type="radio" id="creditCard" name="paymentMethod" value="Card" onChange={handlePaymentMethodChange} />
               <label className='paymentLabel' htmlFor="creditCard">Credit / Debit Card</label><br />
               <br/>
               <i class="fa-solid fa-money-bill" ></i>
@@ -210,9 +276,20 @@ function PatientAppointment({ userType }) {
             <button className='formSubmitAppointment' type="submit">Place Appointment</button>
           </form>
         </div>
+        
+           
+
+                </div>
       )}
       <Footer />
+    
+    
+    
+    
     </div>
+    
+           
+    
   )
 }
 

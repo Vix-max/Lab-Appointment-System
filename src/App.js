@@ -13,6 +13,7 @@ import PatientRegister from './components/PatientRegister';
 import PatientProfile from './components/pages/PatientProfile';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
 import AppointmentPayment from './components/pages/AppointmentPayment';
+import AppointmentInvoice from './components/AppointmentInvoice';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path='/patientregister' exact element={<PatientRegister/>} />
           <Route path='/patientProfile' exact element={<PatientProfile/>} />
           <Route path='/appointmentpayment' exact element={<AppointmentPayment/>} />
+          <Route path='/appointmentinvoice' exact element={<AppointmentInvoice/>} />
         </Routes>
       </Router>
     </>

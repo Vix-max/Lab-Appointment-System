@@ -9,6 +9,7 @@ import {Link} from 'react-router-dom'
 import EditAccountPatient from '../EditAccountPatient';
 import ViewTechPatient from '../ViewTechPatient';
 import PatientAppointment from '../PatientAppointment';
+import ViewAppointmentPatient from '../ViewAppointmentPatient';
 
 
  function PatientProfile(){
@@ -91,7 +92,7 @@ import PatientAppointment from '../PatientAppointment';
 
 
 <li className='cards__item4'>
-  <Link className='cards__item__link4' to="/" >
+  <Link className='cards__item__link4' to="/" onClick={(event) => handleUserTypeSelect('viewAppointment', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -179,6 +180,7 @@ import PatientAppointment from '../PatientAppointment';
                     {selectedUserType === 'editaccountpatient' && <EditAccountPatient userType={selectedUserType}/>}
                     {selectedUserType === 'viewtechpatient' && <ViewTechPatient userType={selectedUserType}/>}
                     {selectedUserType === 'patientappointment' && <PatientAppointment userType={selectedUserType}/>}
+                    {selectedUserType === 'viewAppointment' && <ViewAppointmentPatient userType={selectedUserType}/>}
                     
                   </>
                 )}

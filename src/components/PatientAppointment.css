@@ -230,5 +230,15 @@
       border: 1px solid #4855E5;
       color: white;
    }
+
+   .file-upload{
+    margin-left: 130px;
+    width: 90%;
+   }
+
+   .uploadFile{
+    width: 78% !important;
+    float: left;
+   }
    
     

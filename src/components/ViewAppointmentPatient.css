@@ -1,0 +1,166 @@
+
+@font-face {
+    font-family: 'gwyner'; /* Choose any name for your font */
+    src: url('../fonts/gwyner-condensed-light.ttf') format('truetype'); /* Update the path and format as needed */
+  }
+  .backBtn{
+    margin-top: 20px;
+    margin-left: 50px;
+    float: left;
+    color: #224167;
+    font-size: 30px;
+  }
+
+  .backButtin {
+    display: flex;
+    justify-content: flex-start; /* Align items to the left */
+    align-items: center; /* Center items vertically */
+  }
+  
+
+  
+  .tableContainer{
+  text-align: center;
+  justify-content: center; /* Horizontally center the content */
+  align-items: center; /* Vertically center the content */
+  padding: 50px;
+}
+
+.patienttable {
+  border-radius: 30px;
+  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.3);
+  text-align: center;
+  margin: 50px;
+  font-family: "Montserrat", sans-serif;
+  margin: 0 auto; /* Center the table horizontally */
+  padding: 20px;
+  width: 90%; /* Set the table width to 100% */
+  margin: 0 auto; /* Center the table horizontally */
+  text-align: center; /* Center the table content */
+  border-spacing: 0;
+}
+
+.patienttable th,
+.patienttable td,
+.patienttable tr {
+  
+  border-spacing: 0; /* Remove any spacing between adjacent cells */
+  text-align: center; /* Center the content of th, td, and tr */
+}
+
+.tableHeading{
+  padding-bottom: 0px !important;;
+}
+
+.patienttable th {
+  text-align: center; /* Center the content of th */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  padding-bottom: 30px;
+  color: #4f5051;
+}
+
+tr.margin-bottom {
+    margin-bottom: 40px; /* Adjust the margin value as needed */
+  }
+
+.patienttable td {
+  
+  padding: 15px;
+  border-spacing: 0; /* Remove any spacing between adjacent cells */
+  text-align: center; /* Center the content of th, td, and tr */
+  border-bottom: 1px solid #c5c5c5; /* Add border to the right side of the cell */
+}
+
+
+.patienttable h2{
+  font-family: 'gwyner', Arial, sans-serif; /* Use the custom font in your CSS */
+    margin-bottom: 15px;
+    margin-top: 12px;
+    
+}
+
+.patienttable td {
+  font-family: "Montserrat", sans-serif;
+}
+
+.patientDeleteSubmit{
+  background-color: transparent;
+  color: #4855E5;
+  font-family: "Montserrat", sans-serif;
+  padding: 8px 20px;
+  border: 1px solid #4855E5;
+  transition: all 0.3s ease-out;
+  padding: 12px 26px;
+  font-size: 15px;
+  border-radius: 25px;
+}
+
+.patientDeleteSubmit:hover {
+  transition: all 0.3s ease-out;
+  background: #3644E5;
+  color: white;
+  transition: 250ms;
+}
+
+  
+
+  
+  .line {
+      height: 3px; /* Adjust line thickness as needed */
+      margin-bottom: 20px;
+      background-color: white;
+      text-align: center;
+      padding-bottom: 15px;
+      position: relative; /* Needed for pseudo-elements to work within the banner */
+  }
+  
+  
+  
+  .line::before {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.8) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  .line::after {
+    content: "";
+    position: absolute;
+    top: 50%; /* Position at the middle vertically */
+    left: 0; /* Start from left side */
+    width: 100%; /* Stretch across full width */
+    height: 2px; /* Adjust height as needed */
+    background: linear-gradient(to right, rgba(72, 85, 229, 0) 0%, rgba(72, 85, 229, 0.3) 50%, rgba(72, 85, 229, 0) 100%);
+    /* Set z-index to a lower value to place it behind the h1 tag */
+    z-index: 0;
+  }
+  
+  
+
+
+
+
+
+
+
+
+.pending-status {
+    color: rgb(255, 108, 108); /* or any other color you prefer for pending status */
+    font-weight: 700;
+  }
+  
+  .in-progress-status {
+    color: rgb(67, 119, 238); /* or any other color you prefer for in progress status */
+    font-weight: 700;
+  }
+  
+  .completed-status {
+    color: rgb(80, 193, 76); /* or any other color you prefer for completed status */
+    font-weight: 700;
+  }
