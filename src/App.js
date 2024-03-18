@@ -14,6 +14,8 @@ import PatientProfile from './components/pages/PatientProfile';
 import { AuthProvider } from './AuthContext'; // Import AuthProvider
 import AppointmentPayment from './components/pages/AppointmentPayment';
 import AppointmentInvoice from './components/AppointmentInvoice';
+import DoctorProfile from './components/pages/DoctorProfile';
+import TechnicianProfile from './components/pages/TechnicianProfile';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
           <Route path='/adminprofile' exact element={<AdminProfile/>} />
           <Route path='/patientregister' exact element={<PatientRegister/>} />
           <Route path='/patientProfile' exact element={<PatientProfile/>} />
+          <Route path='/doctorprofile' exact element={<DoctorProfile/>} />
+          <Route path='/techprofile' exact element={<TechnicianProfile/>} />
           <Route path='/appointmentpayment' exact element={<AppointmentPayment/>} />
           <Route path='/appointmentinvoice' exact element={<AppointmentInvoice/>} />
         </Routes>

@@ -59,6 +59,27 @@ function ViewAppointmentPatient({userType}) {
   }
 
 
+  const handleDownloadResult = async (id) => {
+    try {
+        const response = await axios.get(`http://localhost:8080/appointment/result/${id}`, {
+            responseType: 'blob'
+        });
+
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `Test_${id}-Result.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error('Error downloading result report:', error);
+        toast.error('An error occurred while downloading the result report');
+    }
+};
+
+
   return (
     <div>
       <div className='backButtin'>
@@ -71,12 +92,12 @@ function ViewAppointmentPatient({userType}) {
             <table className='patienttable'>
               <thead>
               <tr>
-            <th className="tableHeading" colSpan="7" ><h2>Your Appointment</h2>
+            <th className="tableHeading" colSpan="8" ><h2>Your Appointment</h2>
             
             </th>
           </tr>
           <tr>
-            <th colSpan="7"><div className='line'></div></th>
+            <th colSpan="8"><div className='line'></div></th>
             </tr>
                 <tr class="margin-bottom">
                   <th>ID</th>
@@ -86,6 +107,7 @@ function ViewAppointmentPatient({userType}) {
                   <th>Recommended by</th>
                   <th>Payment Status</th>
                   <th>Test Result Status</th>
+                  <th>Test Report</th>
                 </tr>
               </thead>
               <tbody>
@@ -98,6 +120,13 @@ function ViewAppointmentPatient({userType}) {
                     <td>Dr. {appointment.doctor}</td> {/* Corrected property name */}
                     <td>{appointment.payment}</td>
                     <td className={getClassByResult(appointment.result)}>{appointment.result}</td>
+                    <td>
+  {(appointment.result && (appointment.result.toLowerCase() !== "pending" && appointment.result.toLowerCase() !== "in progress")) ? (
+    <button className='pdfDownload' onClick={() => handleDownloadResult(appointment.id)} >
+      Download Test Result
+    </button>
+  ) : "In process"}
+</td>
                     
                   </tr>
                 ))}

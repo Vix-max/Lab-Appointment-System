@@ -3,13 +3,14 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import './AppointmentSettings.css';
+import './ViewAppointmentsDoctor.css';
 
-function AppointmentSettings({ userType }) {
+function ViewAppointmentsDoctor({ userType }) {
     const { username } = useAuth();
     const [appointments, setAppointments] = useState([]);
     const [filteredAppointment, setFilteredAppointment] = useState([]);
     const [patientsName, setPatientsName] = useState({});
+    const [DrfullName, setDrFullName] = useState('');
 
     const fetchData = async () => {
         try {
@@ -47,10 +48,24 @@ function AppointmentSettings({ userType }) {
         }
     };
     
-      useEffect(() => {
+    useEffect(() => {
         // Call fetchData function
         fetchData();
-      }, []);
+        
+        // Fetch full name using username
+        const fetchFullName = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/doctor/getByUsername/${username}`);
+                setDrFullName(response.data.fullName);
+            } catch (error) {
+                console.error('Error fetching full name:', error);
+                toast.error('An error occurred while fetching full name');
+            }
+        };
+        
+        fetchFullName();
+    }, [username]);
+      
 
     function getClassByResult(result) {
         switch ((result || '').toLowerCase()) {
@@ -100,10 +115,7 @@ function AppointmentSettings({ userType }) {
                     }
                 });
                 
-
-
                 toast.success('Test result uploaded successfully');
-
 
                 fetchData();
             } catch (error) {
@@ -116,19 +128,16 @@ function AppointmentSettings({ userType }) {
 
     const [searchQuery, setSearchQuery] = useState('');
 
-
-const handleSearch = (query) => {
-    setSearchQuery(query);
-    const filteredAppointments = appointments.filter(appointment => {
-        const idMatch = appointment.id.toString().includes(query.toLowerCase());
-        const patientMatch = (appointment.fullName || '').toLowerCase().includes(query.toLowerCase()); // Handling undefined fullName
-        const testMatch = appointment.test.toLowerCase().includes(query.toLowerCase());
-        return idMatch || patientMatch || testMatch;
-    });
-    setFilteredAppointment(filteredAppointments);
-};
-
-
+    const handleSearch = (query) => {
+        setSearchQuery(query);
+        const filteredAppointments = appointments.filter(appointment => {
+            const idMatch = appointment.id.toString().includes(query.toLowerCase());
+            const patientMatch = (appointment.fullName || '').toLowerCase().includes(query.toLowerCase()); // Handling undefined fullName
+            const testMatch = appointment.test.toLowerCase().includes(query.toLowerCase());
+            return idMatch || patientMatch || testMatch;
+        });
+        setFilteredAppointment(filteredAppointments);
+    };
 
     const handleDownloadResult = async (id) => {
         try {
@@ -150,13 +159,6 @@ const handleSearch = (query) => {
         }
     };
 
-    
-
-
-        
-
-        
-
     return (
         <div>
             <div className='backButtin'>
@@ -164,12 +166,12 @@ const handleSearch = (query) => {
                     <i className="fa-solid fa-arrow-left"></i>
                 </Link>
             </div>
-            {userType === 'appointmentsettings' && (
+            {userType === 'viewappointmentdoctor' && (
                 <div className='tableContainer'>
                     <table className='patienttable'>
                         <thead>
                             <tr>
-                                <th className="tableHeading" colSpan="11" ><h2>All Appointments</h2>
+                                <th className="tableHeading" colSpan="11" ><h2>All Appointments under Your Name</h2>
                                 <input
                                     type="text"
                                     placeholder="Search by ID, Patient Name, or Medical Test"
@@ -195,40 +197,37 @@ const handleSearch = (query) => {
                             </tr>
                         </thead>
                         <tbody>
-  {filteredAppointment.map(appointment => (
-    <tr key={appointment.id}>
-      <td>{appointment.id}</td>
-      <td>{appointment.test}</td>
-      <td>{appointment.fullName}</td>
-      <td>{appointment.date}</td>
-      <td>{appointment.time}</td>
-      <td>
-        <button className='pdfDownload' onClick={() => handleDownloadReport(appointment.id)}>
-          Download Past Report
-        </button>
-      </td>
-      <td>Dr. {appointment.doctor}</td>
-      <td>{appointment.payment}</td>
-      <td className={getClassByResult(appointment.result)}>{appointment.result}</td>
-      <td>
-  {(appointment.result && (appointment.result.toLowerCase() !== "pending" && appointment.result.toLowerCase() !== "in progress")) ? (
-    <button className='pdfDownload' onClick={() => handleDownloadResult(appointment.id)} >
-      Download Test Result
-    </button>
-  ) : (
-    <button className='pdfUpload' onClick={() => handleUploadResult(appointment.id)}>
-      Upload Test Result
-    </button>
-  )}
-</td>
-
-    </tr>
-  ))}
-</tbody>
-
-
-
-
+                        {filteredAppointment
+    .filter(appointment => {
+        console.log("DrfullName:", DrfullName);
+        console.log("appointment.doctor:", appointment.doctor);
+        return appointment.doctor === DrfullName;
+    })
+    .map(appointment => (
+        <tr key={appointment.id}>
+                                        <td>{appointment.id}</td>
+                                        <td>{appointment.test}</td>
+                                        <td>{appointment.fullName}</td>
+                                        <td>{appointment.date}</td>
+                                        <td>{appointment.time}</td>
+                                        <td>
+                                            <button className='pdfDownload' onClick={() => handleDownloadReport(appointment.id)}>
+                                                Download Past Report
+                                            </button>
+                                        </td>
+                                        <td>Dr. {appointment.doctor}</td>
+                                        <td>{appointment.payment}</td>
+                                        <td className={getClassByResult(appointment.result)}>{appointment.result}</td>
+                                        <td>
+                                            {(appointment.result && (appointment.result.toLowerCase() !== "pending" && appointment.result.toLowerCase() !== "in progress")) ? (
+                                                <button className='pdfDownload' onClick={() => handleDownloadResult(appointment.id)} >
+                                                    Download Test Result
+                                                </button>
+                                            ) : "In process"}
+                                        </td>
+                                    </tr>
+                                ))}
+                        </tbody>
                     </table>
                 </div>
             )}
@@ -236,4 +235,4 @@ const handleSearch = (query) => {
     )
 }
 
-export default AppointmentSettings;
+export default ViewAppointmentsDoctor;
