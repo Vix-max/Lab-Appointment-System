@@ -136,11 +136,15 @@ function PatientAppointment({ userType }) {
 
       setAppointmentDetails(response.data);
 
-      if (selectedPaymentMethod === 'Cash') {
-        navigate('/appointmentinvoice');
-      } else if (selectedPaymentMethod === 'Card') {
-        navigate('/appointmentpayment');
-      }
+      setTimeout(() => {
+        if (selectedPaymentMethod === 'Cash') {
+          navigate('/appointmentinvoice');
+        } else if (selectedPaymentMethod === 'Card') {
+          navigate('/appointmentpayment');
+        }
+      }, 2000);
+
+      
     } catch (error) {
       console.error('Error registering patient:', error);
       toast.error('An error occurred while registering the patient');

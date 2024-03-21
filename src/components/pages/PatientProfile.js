@@ -10,6 +10,7 @@ import EditAccountPatient from '../EditAccountPatient';
 import ViewTechPatient from '../ViewTechPatient';
 import PatientAppointment from '../PatientAppointment';
 import ViewAppointmentPatient from '../ViewAppointmentPatient';
+import PatientReview from '../PatientReview';
 
 
  function PatientProfile(){
@@ -130,7 +131,7 @@ import ViewAppointmentPatient from '../ViewAppointmentPatient';
 
 
     <li className='cards__item4'>
-      <Link className='cards__item__link4' to="/" onClick={(event) => handleUserTypeSelect('doctorsettings', event)}>
+      <Link className='cards__item__link4' to="/contact" >
       <figure className='cards__item__pic-wrap3' >
           <img
             className='cards__item__img3'
@@ -148,7 +149,7 @@ import ViewAppointmentPatient from '../ViewAppointmentPatient';
 
 
     <li className='cards__item4'>
-      <Link className='cards__item__link4' to="/" onClick={(event) => handleUserTypeSelect('techsettings', event)}>
+      <Link className='cards__item__link4' to="/" onClick={(event) => handleUserTypeSelect('submitreview', event)}>
       <figure className='cards__item__pic-wrap3' >
           <img
             className='cards__item__img3'
@@ -181,6 +182,7 @@ import ViewAppointmentPatient from '../ViewAppointmentPatient';
                     {selectedUserType === 'viewtechpatient' && <ViewTechPatient userType={selectedUserType}/>}
                     {selectedUserType === 'patientappointment' && <PatientAppointment userType={selectedUserType}/>}
                     {selectedUserType === 'viewAppointment' && <ViewAppointmentPatient userType={selectedUserType}/>}
+                    {selectedUserType === 'submitreview' && <PatientReview userType={selectedUserType}/>}
                     
                   </>
                 )}

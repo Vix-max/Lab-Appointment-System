@@ -13,6 +13,8 @@ import { useAuth } from '../../AuthContext'; // Import useAuth hook
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import TechSettings from '../TechSettings';
+import ViewQueries from '../ViewQueries';
+import GenerateReports from '../GenerateReports';
 
 
  function AdminProfile(){
@@ -91,7 +93,7 @@ import TechSettings from '../TechSettings';
 
 
 <li className='cards__item3'>
-  <Link className='cards__item__link3' to="/" >
+  <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('generatereport', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -107,7 +109,7 @@ import TechSettings from '../TechSettings';
 </li>
 
 <li className='cards__item3'>
-  <Link className='cards__item__link3' to="/" >
+  <Link className='cards__item__link3' to="/" onClick={(event) => handleUserTypeSelect('viewqueries', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -231,7 +233,8 @@ import TechSettings from '../TechSettings';
         {selectedUserType === 'doctorsettings' && <DoctorSettings userType={selectedUserType}/>}
         {selectedUserType === 'techsettings' && <TechSettings userType={selectedUserType}/>}
         {selectedUserType === 'appointmentsettings' && <AppointmentSettings userType={selectedUserType}/>}
-        
+        {selectedUserType === 'viewqueries' && <ViewQueries userType={selectedUserType}/>}
+        {selectedUserType === 'generatereport' && <GenerateReports userType={selectedUserType}/>}
       </>
     )}
 

@@ -10,6 +10,7 @@ import EditAccountTech from '../EditAccountTech';
 import AppointmentSettings from '../AppointmentSettings';
 import PatientSettings from '../PatientSettings';
 import ViewPatientsTech from '../ViewPatientsTech';
+import ViewQueries from '../ViewQueries';
 
 
 
@@ -109,7 +110,7 @@ import ViewPatientsTech from '../ViewPatientsTech';
 </li> 
 
 <li className='cards__item4'>
-  <Link className='cards__item__link4' to="/" >
+  <Link className='cards__item__link4' to="/" onClick={(event) => handleUserTypeSelect('viewqueries', event)}>
   <figure className='cards__item__pic-wrap3' >
       <img
         className='cards__item__img3'
@@ -141,6 +142,7 @@ import ViewPatientsTech from '../ViewPatientsTech';
                     {selectedUserType === 'editaccounttech' && <EditAccountTech userType={selectedUserType}/>}
                     {selectedUserType === 'appointmentsettings' && <AppointmentSettings userType={selectedUserType}/>}
                     {selectedUserType === 'viewpatientstech' && <ViewPatientsTech userType={selectedUserType}/>}
+                    {selectedUserType === 'viewqueries' && <ViewQueries userType={selectedUserType}/>}
                   </>
                 )}
 
